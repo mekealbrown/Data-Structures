@@ -1,15 +1,15 @@
 #include <iostream>
-#include <cassert>
-#include "utility.h"
+#include "testing.h"
 
 int main()
 {
-    int a[20] = {1, 2, 1, 4, 11, 6, 7};
-    arrayReverse(a + 2, 3);
-    for (int i = 0; i < 7; ++i)
-    {
-        std::cout << a[i] << ",";
-    }
-    //assert(a[2] == 5);
-    //assert(a[4] == 3);
+   LinkedList<int> list;
+   list.print();
+   list.insert(10);
+   list.insert(15);
+   list.insert(20);
+   list.print();
+   list.remove();
+   list.remove();
+   list.print();
 }
