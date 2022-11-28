@@ -3,27 +3,27 @@
 
 int main(int argc, char *argv[])
 {
+    (void)argc;
     List<int> s{};
     int data;
     while (std::cin >> data)
     {
         s.append(data);
     }
-    int hold, val;
+    int hold{}, test{};
     int div{std::stoi(argv[1])};
     for (List<int>::Iterator i{s.getHead()}; i; ++i)
     {
-        if (!*i % div)
+        
+        do
         {
-            val = *i;
-            hold = i.index;
-            i.remove();
-        }
-        if (val % div)
-        {
-            i.insert(hold);
-        }
-        ++val;
+            if (i == 1)
+            {
+                ++i;
+            }
+            ++hold;
+        } while (hold % div != 0);
+        i.insert(test);
     }
     auto p = s.getHead();
     while (p)

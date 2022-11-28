@@ -1,15 +1,24 @@
+#include "queue_ll.h"
+#include "cstdlib"
+#include "cassert"
 #include <iostream>
-#include "testing.h"
+using namespace std;
 
 int main()
 {
-   LinkedList<int> list;
-   list.print();
-   list.insert(10);
-   list.insert(15);
-   list.insert(20);
-   list.print();
-   list.remove();
-   list.remove();
-   list.print();
+    Queue<int> s;
+    s.push(804);
+    int x = s.pop();
+    assert(s.isEmpty());
+    std::cout << x << "\n";
 }
+
+// Node *ptr = new Node;
+//         ptr->data = x;
+//         if (tail == nullptr)
+//         {
+//             head = tail = ptr;
+//             return;
+//         }
+//         tail->next = ptr;
+//         tail = ptr;
