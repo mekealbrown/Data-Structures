@@ -12,7 +12,7 @@ class Queue
         Node *head;
         Node *tail;
     public:
-        Queue() { head = nullptr; tail = nullptr;}  
+        Queue() { head = NULL; tail = nullptr;}  
         ~Queue() 
         {                         
             Node *current = head;
@@ -44,5 +44,14 @@ class Queue
             delete temp;
             return data;
         }
-        
+        bool isEmpty() {return tail == nullptr;}
+        void print()
+        {
+            Node *temp = head;
+            while (temp != nullptr)
+            {
+                std::cout << temp->data << " - ";
+                temp = temp->next;
+            }
+        }
 };     
