@@ -27,3 +27,6 @@ int main(int argc, char *argv[])
 
 // all individual loops are argc time
 // place differences into array at index the num would be at eg. arr[2] = 3;
+
+// all individual loops are argc time
+// place differences into array at index the num would be at eg. arr[2] = 3;

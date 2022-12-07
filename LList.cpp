@@ -17,7 +17,7 @@ struct LinkedList
 {
     Node *head;
     LinkedList() {head = NULL;}
-
+    
     void reverse()
     {
         Node *current{head};

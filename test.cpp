@@ -1,16 +1,19 @@
-#include "queue_ll.h"
+#include "set_binarytree.h"
 #include "cstdlib"
 #include "cassert"
 #include <iostream>
-using namespace std;
+#include "testing.h"
 
 int main()
 {
-    Queue<int> s;
-    s.push(804);
-    int x = s.pop();
-    assert(s.isEmpty());
-    std::cout << x << "\n";
+   Set<int> s;
+   assert(s.getSize()==0);
+   
+   int a[] = {1,4,3,6,5,2,7,9};
+   for (int x : a)
+       s.insert(x);
+   assert(s.contains(5));
+   assert(!s.contains(11));
 }
 
 // Node *ptr = new Node;
