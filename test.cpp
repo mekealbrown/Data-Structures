@@ -11,8 +11,6 @@ int main()
     for (int i = 0; i < 14; i++)
         S.insert(values[i]);
     S.remove(1);
-    S.remove(3);
-    S.print();
     // assert(!S.contains(1));
 }
 
