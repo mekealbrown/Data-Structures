@@ -6,14 +6,14 @@
 
 int main()
 {
-   Set<int> s;
-   assert(s.getSize()==0);
-   
-   int a[] = {1,4,3,6,5,2,7,9};
-   for (int x : a)
-       s.insert(x);
-   assert(s.contains(5));
-   assert(!s.contains(11));
+    Set<int> S;
+    int values[] = {1, 3, 5, 7, 9, 11, 13, 12, 10, 8, 6, 4, 2, 0};
+    for (int i = 0; i < 14; i++)
+        S.insert(values[i]);
+    S.remove(1);
+    S.remove(3);
+    S.print();
+    // assert(!S.contains(1));
 }
 
 // Node *ptr = new Node;
