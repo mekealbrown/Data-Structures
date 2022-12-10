@@ -1,112 +1,65 @@
-#include <iostream>
-
 template <typename T>
 class Set
 {
 private:
     class Node
     {
-    public:
         T data;
-        Node *left, *right;
-    };
-    Node *root;
-    int size;
+        Node *left;
+        Node *right;
+    } Node *root;
 
 public:
     Set();
     ~Set();
-    void insert(T data);
-    void remove(T data);
-    Node * remove(Node *leaf, T data);
-    bool contains(T data);
-    int getSize();
-};
-
-
-template<typename T> Set<T>::Set() { root = nullptr; size = 0;}
-
-template<typename T> Set<T>::~Set() {}
-
-template<typename T> void Set<T>::insert(T data) 
-{
-    Node *leaf = new Node;
-    leaf->data = data;
-    if (root == nullptr) { root = leaf;}
-    else  
-    {
-        Node *temp = root;
-        while (true)
-        {
-            if (data > temp->data)
-            {
-                if (temp->right == nullptr)
-                {
-                    temp->right = leaf;
-                    break;
-                }
-                temp = temp->right;
-            }
-            else 
-            {
-                if (temp->left == nullptr)
-                {
-                    temp->left = leaf;
-                    break;
-                }
-                temp = temp->left;
-            }
-        }
-    }
-    ++size;
+    void insert(T key);
+    Node *insert(Node *ptr, T key);
+    void remove(T key);
+    Node *remove(Node *ptr, T key);
+    bool contains(T key);
+    Node *contains(Node *ptr, T key);
 }
 
-template<typename T> void Set<T>::remove(T data) //trying recursion here
+template <typename T>
+Set<T>::Set()
 {
-    remove(root, data);
+    root = nullptr;
 }
 
-template<typename T>
-typename Set<T>::Node* Set<T>::remove(Node *leaf, T data)
+template <typename T>
+Set<T>::~Set()
 {
-    if (root == nullptr) { return root; }
-    if (data > leaf->data)
-    {
-        leaf = remove(leaf->right, data);
-    }
-    else if (data < leaf->data)
-    {
-        leaf = remove(leaf->left, data);
-    }
-    else  
-    {
-        
-    }
-    return root;
 }
 
-template<typename T> bool Set<T>::contains(T data)
+template <typename T>
+void Set<T>::insert(T key)
 {
-    Node *temp = root;
-    while (temp != nullptr)
-    {
-        if (temp->data == data)
-        {
-            return true;
-        }
-        if (temp->data < data)
-        {
-            temp = temp->left;
-        }
-        else  
-        {
-            temp = temp->right;
-        }
-    }
-    return false;
+    insert(root, key);
 }
 
-template<typename T> int Set<T>::getSize()
+template <typename T>
+Set<T>::Node *Set<T>::insert(Node *ptr, T key)
 {
-    return size;
+}
+
+template <typename T>
+void Set<T>::remove(T data)
+{
+    remove(root, key);
+}
+
+template <typename T>
+Set<T>::Node *Set<T>::remove(Node *ptr, T key)
+{
+}
+
+template <typename T>
+bool Set<T>::contains(T key)
+{
+    return contains(root, key) == nullptr;
+}
+
+template <typename T>
+Set<T>::Node *Set<T>::contains(Node *ptr, T key)
+{
 }

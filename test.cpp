@@ -6,12 +6,13 @@
 
 int main()
 {
-    Set<int> S;
-    int values[] = {1, 3, 5, 7, 9, 11, 13, 12, 10, 8, 6, 4, 2, 0};
-    for (int i = 0; i < 14; i++)
-        S.insert(values[i]);
-    S.remove(1);
-    // assert(!S.contains(1));
+    Set<char> S;
+    S.insert('A');
+    S.insert('B');
+    S.insert('C');
+    S.remove('C');
+    S.remove('B');
+    assert(S.contains('A'));
 }
 
 // Node *ptr = new Node;
