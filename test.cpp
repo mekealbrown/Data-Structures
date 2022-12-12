@@ -4,16 +4,16 @@
 #include <iostream>
 #include "testing.h"
 
+
+using namespace std;
+
 int main()
 {
-    Set<char> S;
-    S.insert('A');
-    S.insert('B');
-    S.insert('C');
-    S.remove('C');
-    S.remove('B');
-    assert(S.contains('A'));
+    Set<int> S;
+    assert(S.getSize()==0);
+
 }
+
 
 // Node *ptr = new Node;
 //         ptr->data = x;
