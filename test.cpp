@@ -3,6 +3,7 @@
 #include "cassert"
 #include <iostream>
 #include "testing.h"
+#include <iostream>
 
 
 using namespace std;
@@ -10,17 +11,14 @@ using namespace std;
 int main()
 {
     Set<int> S;
-    assert(S.getSize()==0);
-
+    int values[] = {1,3,5,7,9,11,13,12,10,8,6,4,2,0};
+    for (int i=0; i<14; i++)
+        S.insert(values[i]);
+    S.remove(1);
+    S.insert(1);
+    S.remove(3);
+    S.insert(3);
+    assert(S.getSize()==14);
 }
 
 
-// Node *ptr = new Node;
-//         ptr->data = x;
-//         if (tail == nullptr)
-//         {
-//             head = tail = ptr;
-//             return;
-//         }
-//         tail->next = ptr;
-//         tail = ptr;

@@ -1,3 +1,5 @@
+
+
 template <typename T>
 class Set
 {
@@ -17,141 +19,123 @@ private:
     Node *root; int size;
 
 public:
-    Set();
-    ~Set();
-    void insert(T key);
-    Node *insert(Node *ptr, T key);
-    void remove(T key);
-    Node *remove(Node *ptr, T key);
-    bool contains(T key);
-    Node *contains(Node *ptr, T key);
-    void cutDown(Node *ptr);
-    int getSize();
-};
-
-template <typename T>
-Set<T>::Set()
-{
-    root = nullptr; size = 0;
-}
-
-template <typename T>
-Set<T>::~Set()
-{
-   cutDown(root);
-}
-
-
-template <typename T>
-void Set<T>::insert(T key)
-{
-    insert(root, key);
-    ++size;
-}
-
-template <typename T>
-typename Set<T>::Node *Set<T>::insert(Node *ptr, T key)
-{
-    if (!ptr)
+    Set() {root = nullptr; size = 0;} 
+    ~Set()
     {
-        return new Node(key);
-    }
-    else 
-    {
-        if (key > ptr->data) {ptr->right = insert(ptr->right, key);}
-        else {ptr->left = insert(ptr->left, key);}
-    }
-    return ptr;
-}
-
-template <typename T>
-void Set<T>::remove(T key)
-{
-    remove(root, key);
-    --size;
-}
-
-template <typename T>
-typename Set<T>::Node *Set<T>::remove(Node *ptr, T key)
-{
-    Node *hold = nullptr;
-    if (ptr == nullptr) {return ptr;}
-    else if (key > ptr->data) 
-    {
-        ptr->right = remove(ptr->right, key);
-    }
-    else if (key < ptr->data) 
-    {
-        ptr->left = remove(ptr->left, key);
-    }
-    else  
-    {
-        if (ptr->left == nullptr && ptr->right == nullptr) 
+        while (getSize() != 0)
         {
-            //ptr = nullptr;
-            delete ptr;
+            remove(root->data);
         }
-        else if (ptr->left && ptr->right)
+    }
+    void insert(T key)
+    {
+        insert(root, key);
+    }
+    Node *insert(Node *&ptr, T key)
+    {
+        if (contains(key) == false)
         {
-            Node *temp = ptr->right;
-            while (temp->left)
+            if (ptr == nullptr)
+            {
+                ptr = new Node(key);
+                //std::cout << "inserted..." << ptr->data << "\n";
+                ++size;
+                //return ptr;
+            }
+            else 
+            {
+                if (key > ptr->data)
+                {
+                    ptr->right = insert(ptr->right, key);
+                }
+                else 
+                {
+                    ptr->left = insert(ptr->left, key);
+                }
+            }
+        }
+        return ptr;
+    }
+    void remove(T key)
+    {
+        remove(root, key);
+        --size;
+    }
+    Node *remove(Node *&node, T key)
+    {
+        if (node->data > key)
+        {
+            node->left = remove(node->left, key);
+        }
+        else if (node->data < key)
+        {
+            node->right = remove(node->right, key);
+        }
+        else  
+        {
+            if (!node->left && !node->right)
+            {
+                delete node;
+                node = nullptr;
+            }
+            else if (node->left && node->right)
+            {
+                Node *temp = node;
+                temp = temp->right;
+                while (temp->left)
+                {
+                    temp = temp->left;
+                }
+                node->data = temp->data;
+                node->right = remove(node->right, temp->data);
+            }
+            else  
+            {
+                Node *p = (node->left)? node->left:node->right;
+                delete node;
+                node = p;
+            }
+        }
+        return node;
+    }
+    bool contains(T key)
+    {
+        Node *temp = root;
+        while (temp)
+        {
+            ////std::cout << temp->data << "\n";
+            if (temp->data == key)
+            {
+                return true;
+            }
+            if (key > temp->data)
+            {
+                temp = temp->right;
+            }
+            else  
             {
                 temp = temp->left;
             }
-            ptr->data = temp->data;
-            ptr->right = remove(ptr->right, key);
-        } 
-        else  
-        {
-            hold = (hold->left)? hold->left : hold->right;
-            ptr->data = hold->data;
-            delete hold;
+            
         }
+        return false;
     }
-    return ptr;
-}
-
-template<typename T>
-void Set<T>::cutDown(Node *ptr)
-{
-    if (!ptr)
+    int getSize()
     {
-        return;
+        return size;
     }
-    cutDown(ptr->left);
-    cutDown(ptr->right);
-    delete ptr;
-}
-
-template <typename T>
-bool Set<T>::contains(T key)
-{
-    return contains(root, key) == nullptr;
-}
-
-template <typename T>
-typename Set<T>::Node *Set<T>::contains(Node *ptr, T key)
-{
-    if (ptr)
+    void print()
     {
-        if (key > ptr->data)
+        print(root);
+        //std::cout << std::endl;
+    }
+    void print(Node *node)
+    {
+        if (node != nullptr)
         {
-            ptr->right = contains(ptr->right, key);
-        }
-        else if (key < ptr->data)
-        {
-            ptr->left = contains(ptr->left, key);
-        }
-        else  
-        {
-            return ptr;
+            print(node->left);
+            //std::cout << node->data << " - ";
+            print(node->right);
         }
     }
-    return nullptr;
-}
-
-template<typename T>
-int Set<T>::getSize()
-{
-    return size;
-}
+};
