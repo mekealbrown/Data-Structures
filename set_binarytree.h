@@ -1,5 +1,3 @@
-
-
 template <typename T>
 class Set
 {
@@ -38,9 +36,7 @@ public:
             if (ptr == nullptr)
             {
                 ptr = new Node(key);
-                //std::cout << "inserted..." << ptr->data << "\n";
                 ++size;
-                //return ptr;
             }
             else 
             {
@@ -103,7 +99,6 @@ public:
         Node *temp = root;
         while (temp)
         {
-            ////std::cout << temp->data << "\n";
             if (temp->data == key)
             {
                 return true;
@@ -127,14 +122,12 @@ public:
     void print()
     {
         print(root);
-        //std::cout << std::endl;
     }
     void print(Node *node)
     {
         if (node != nullptr)
         {
             print(node->left);
-            //std::cout << node->data << " - ";
             print(node->right);
         }
     }
